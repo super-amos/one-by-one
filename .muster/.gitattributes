@@ -1,0 +1,3 @@
+# muster: the store is content-addressed and byte-reproducible. Disable line-ending
+# conversion so committed bytes survive checkout on any platform (no CRLF corruption).
+* -text

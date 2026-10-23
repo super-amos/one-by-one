@@ -1,0 +1,10 @@
+# muster: never share the local overlay, disposable cache, or transient locks/temps
+private/
+cache/
+lease.json
+lease.json.*
+*.tmp-*
+*.steal
+*.new.*
+*.release.*
+*.claimed.*
