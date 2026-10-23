@@ -65,25 +65,29 @@ struct HomeView: View {
     }
 
     private func focus(on card: Card) -> some View {
+        // Spacing follows the Paper design: 44 above the headline, 32 to the
+        // card, 40 from the card to the buttons, with any message in that gap.
         VStack(spacing: 0) {
-            Spacer(minLength: 8)
+            Spacer(minLength: 12)
+                .frame(maxHeight: 44)
             VStack(spacing: 6) {
                 Text(Copy.headline)
                     .font(.system(size: 21, weight: .semibold))
+                    .tracking(-0.2)
                 Text(Copy.subhead)
                     .font(.system(size: 16))
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Theme.inkSecondary)
             }
             .multilineTextAlignment(.center)
             cardArea(card)
-                .padding(.top, 34)
+                .padding(.top, 32)
             messageLine
-                .padding(.top, 22)
+                .padding(.top, 10)
             actionButtons
-                .padding(.top, 14)
+                .padding(.top, 10)
             Spacer(minLength: 8)
         }
-        .padding(.horizontal, 40)
+        .padding(.horizontal, 54)
     }
 
     private func cardArea(_ card: Card) -> some View {
@@ -120,8 +124,8 @@ struct HomeView: View {
                 .transition(.opacity.combined(with: .scale(scale: 0.97)))
             }
         }
-        .frame(maxWidth: 520)
-        .frame(height: 320)
+        .frame(maxWidth: 552)
+        .frame(height: 330)
         .onGeometryChange(for: CGRect.self) { $0.frame(in: .named(Page.space)) } action: { cardFrame = $0 }
     }
 
@@ -142,7 +146,7 @@ struct HomeView: View {
             if let message = model.message {
                 Text(message)
                     .font(.system(size: 14, weight: .medium))
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Theme.inkSecondary)
                     .id(message)
                     .transition(.opacity.combined(with: .offset(y: 4)))
             }
@@ -250,12 +254,12 @@ struct HomeView: View {
             withAnimation(.snappy) { model.rewardLanded(earned) }
             return
         }
-        // The badge's gift sits 5pt in from its left edge and is 24pt wide.
+        // The badge's gift sits 4pt in from its left edge and is 28pt wide.
         flights.append(RewardFlight(
             amount: earned,
             label: model.money(earned),
             from: CGPoint(x: cardFrame.midX, y: cardFrame.midY),
-            to: CGPoint(x: badgeFrame.minX + 17, y: badgeFrame.midY)
+            to: CGPoint(x: badgeFrame.minX + 18, y: badgeFrame.midY)
         ))
     }
 
@@ -285,7 +289,7 @@ private struct EmptyDeckView: View {
                     .font(.system(size: 26, weight: .semibold))
                 Text(Copy.firstBody)
                     .font(.system(size: 17))
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Theme.inkSecondary)
             } else {
                 Image(systemName: "checkmark.circle.fill")
                     .font(.system(size: 44))
@@ -295,7 +299,7 @@ private struct EmptyDeckView: View {
                     .font(.system(size: 26, weight: .semibold))
                 Text(Copy.emptyBody)
                     .font(.system(size: 17))
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Theme.inkSecondary)
                 if let rewards {
                     Text(Copy.emptyReward(rewards))
                         .font(.system(size: 15))

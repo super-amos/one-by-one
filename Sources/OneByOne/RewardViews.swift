@@ -5,14 +5,16 @@ import SwiftUI
 struct GiftIcon: View {
     var size: CGFloat = 24
     var wiggle = 0
+    /// The warm glow around it. The small badge in the top bar goes without.
+    var glows = true
 
     var body: some View {
-        Image(systemName: "gift.fill")
-            .font(.system(size: size * 0.48, weight: .semibold))
+        Image(systemName: "gift")
+            .font(.system(size: size * 0.5, weight: .semibold))
             .foregroundStyle(.white)
             .frame(width: size, height: size)
             .background(Circle().fill(Theme.rewardGradient))
-            .shadow(color: Theme.rewardGlow, radius: size * 0.18, y: size * 0.05)
+            .shadow(color: glows ? Theme.rewardGlow : .clear, radius: size * 0.18, y: size * 0.05)
             .keyframeAnimator(initialValue: 0.0, trigger: wiggle) { content, angle in
                 content.rotationEffect(.degrees(angle))
             } keyframes: { _ in
@@ -31,14 +33,14 @@ struct RewardTag: View {
     let text: String
 
     var body: some View {
-        HStack(spacing: 5) {
-            Image(systemName: "gift.fill")
-                .font(.system(size: 10, weight: .semibold))
+        HStack(spacing: 6) {
+            Image(systemName: "gift")
+                .font(.system(size: 11, weight: .semibold))
             Text(text)
                 .font(.system(size: 13, weight: .semibold).monospacedDigit())
         }
         .foregroundStyle(Theme.rewardText)
-        .padding(.horizontal, 10)
+        .padding(.horizontal, 11)
         .padding(.vertical, 5)
         .background(Capsule().fill(Theme.reward.opacity(0.14)))
     }
@@ -54,8 +56,8 @@ struct RewardBadge: View {
 
     var body: some View {
         HStack(spacing: 8) {
-            GiftIcon(size: 24, wiggle: pulse)
-            HStack(alignment: .firstTextBaseline, spacing: 5) {
+            GiftIcon(size: 28, wiggle: pulse, glows: false)
+            HStack(alignment: .firstTextBaseline, spacing: 8) {
                 Text(text)
                     .font(.system(size: 15, weight: .semibold).monospacedDigit())
                     .foregroundStyle(amount < 0 ? Theme.debt : Theme.ink)
@@ -65,14 +67,14 @@ struct RewardBadge: View {
                     .foregroundStyle(Theme.inkSecondary)
             }
         }
-        .padding(.leading, 5)
-        .padding(.trailing, 13)
-        .padding(.vertical, 5)
+        .padding(.leading, 4)
+        .padding(.trailing, 14)
+        .padding(.vertical, 4)
         .background(Capsule().fill(Theme.card))
         .overlay(
             Capsule().strokeBorder(isSelected ? Theme.reward.opacity(0.7) : Theme.hairline, lineWidth: isSelected ? 1.5 : 1)
         )
-        .shadow(color: Theme.shadow.opacity(0.5), radius: 6, y: 2)
+        .shadow(color: Theme.shadow, radius: 4, y: 2)
         .keyframeAnimator(initialValue: 1.0, trigger: pulse) { content, scale in
             content.scaleEffect(scale)
         } keyframes: { _ in

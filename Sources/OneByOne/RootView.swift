@@ -4,19 +4,27 @@ import SwiftUI
 /// The window: whichever page is open, plus the sheets and alerts any page can raise.
 struct RootView: View {
     @Environment(AppModel.self) private var model
+    @State private var titleBar = TitleBarMetrics()
 
     var body: some View {
         @Bindable var model = model
         ZStack {
             Theme.background.ignoresSafeArea()
-            switch model.page {
-            case .home: HomeView().transition(.opacity)
-            case .edit: EditView().transition(.opacity)
-            case .history: HistoryView().transition(.opacity)
-            case .trash: TrashView().transition(.opacity)
-            case .rewards: RewardsView().transition(.opacity)
+            Group {
+                switch model.page {
+                case .home: HomeView().transition(.opacity)
+                case .edit: EditView().transition(.opacity)
+                case .history: HistoryView().transition(.opacity)
+                case .trash: TrashView().transition(.opacity)
+                case .rewards: RewardsView().transition(.opacity)
+                }
             }
+            // The top bar shares the title bar's row, so pages start at the very top.
+            .ignoresSafeArea(.container, edges: .top)
         }
+        .foregroundStyle(Theme.ink)
+        .environment(\.titleBarMetrics, titleBar)
+        .background(WindowChrome { titleBar = $0 })
         .sheet(item: $model.sheet) { sheet in
             SheetView(sheet: sheet)
         }

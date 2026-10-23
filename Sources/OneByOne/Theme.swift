@@ -129,6 +129,6 @@ struct ShortcutHint: View {
     var body: some View {
         Text(keys)
             .font(.system(size: 11, weight: .medium))
-            .foregroundStyle(.tertiary)
+            .foregroundStyle(Theme.inkSecondary)
     }
 }

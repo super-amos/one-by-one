@@ -16,7 +16,7 @@ private struct SheetFrame<Content: View>: View {
         VStack(alignment: .leading, spacing: 16) {
             Text(title)
                 .font(.system(size: 13, weight: .semibold))
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Theme.inkSecondary)
             content
             HStack {
                 Spacer()
@@ -96,7 +96,7 @@ struct CardEditor: View {
             Divider()
             HStack(spacing: 10) {
                 Text("Reward")
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Theme.inkSecondary)
                 TextField("\(Money.format(defaultValue, in: currency)) (default)", text: $valueText)
                     .textFieldStyle(.roundedBorder)
                     .frame(width: 130)
@@ -159,7 +159,7 @@ struct SplitSheet: View {
             }
             Text("The \(value) reward is shared between the steps.")
                 .font(.system(size: 12))
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Theme.inkSecondary)
         }
     }
 }
@@ -183,7 +183,7 @@ struct AddManySheet: View {
         } content: {
             Text("One task per line. Bullets and checkboxes from your notes are removed. The tasks go to the bottom of your deck.")
                 .font(.system(size: 13))
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Theme.inkSecondary)
                 .fixedSize(horizontal: false, vertical: true)
             TextEditor(text: $text)
                 .font(.system(size: 14))
@@ -219,7 +219,7 @@ struct SetValueSheet: View {
                 .textFieldStyle(.roundedBorder)
             Text("Leave it empty to use the default.")
                 .font(.system(size: 12))
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Theme.inkSecondary)
         }
     }
 }
@@ -279,7 +279,7 @@ struct SpendSheet: View {
             Divider()
             HStack(spacing: 10) {
                 Text("Amount")
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Theme.inkSecondary)
                 TextField(Money.symbol(of: currency), text: $amountText)
                     .textFieldStyle(.roundedBorder)
                     .frame(width: 110)

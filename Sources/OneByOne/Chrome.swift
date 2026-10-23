@@ -3,6 +3,7 @@ import SwiftUI
 /// Page buttons on the left, rewards on the right. Every page shows it.
 struct TopBar: View {
     @Environment(AppModel.self) private var model
+    @Environment(\.titleBarMetrics) private var titleBar
     /// Reports where the reward badge is, so Home can aim rewards at it.
     var onBadgeFrame: (CGRect) -> Void = { _ in }
 
@@ -24,8 +25,9 @@ struct TopBar: View {
             .help("Your rewards (⌘5)")
             .onGeometryChange(for: CGRect.self) { $0.frame(in: .named(Page.space)) } action: { onBadgeFrame($0) }
         }
-        .padding(.horizontal, 16)
-        .frame(height: 52)
+        .padding(.leading, titleBar.buttonsEnd > 0 ? titleBar.buttonsEnd + 14 : 16)
+        .padding(.trailing, 16)
+        .frame(height: titleBar.height)
     }
 }
 
