@@ -32,3 +32,7 @@ Under the hood the same binary runs as an MCP server when started with `--mcp`, 
 - `Tests/OneByOneCoreTests/` holds the tests.
 - `scripts/bundle.sh` wraps the release build in a `.app` and signs it ad hoc, so it runs on this Mac.
 - `scripts/make-icon.swift` draws the app icon. `make icon` reruns it and rebuilds `Resources/AppIcon.icns`, which the bundle script copies in.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
