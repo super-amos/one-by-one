@@ -60,9 +60,9 @@ Deleted tasks, newest first, each showing how long ago it was deleted. Restore p
 
 ### Rewards
 
-A large gift, your rewards in large type with "yours to spend on yourself" under it, and a Spend rewards button. Below are three tiles: total earned, total spent and total interest.
+A large gift, your rewards in large type with "yours to spend on yourself" under it, and an "I spent some rewards" button. The app has nothing to buy, so the button is worded as logging something you already spent, and it's a flat warm tint with no gradient or glow. Below are three tiles: total earned, total spent and total interest.
 
-Spend rewards asks what you treated yourself to, how much, and the date (today unless you change it). If it would take you below zero, the sheet says by how much and reminds you of the interest rate before you confirm. Entries can be edited or deleted to fix mistakes. Spending history lists them newest first, with interest shown as one line per month ("Interest, October 2026") so you can see what being in the red cost you.
+"I spent some rewards" opens a sheet titled "Log what you spent" that asks what you treated yourself to, how much, and the date (today unless you change it). If it would take you below zero, the sheet says by how much and reminds you of the interest rate before you confirm. Entries can be edited or deleted to fix mistakes. Spending history lists them newest first, with interest shown as one line per month ("Interest, October 2026") so you can see what being in the red cost you.
 
 When you have rewards the page says "You earned this. Spend it without guilt." Below zero, the amount turns red, "owed" replaces "yours to spend", and the page says "You're $12.40 in the red, and interest is adding up. A few tasks will clear it. Interest is 10% a year, added daily." The badge in the top bar says "rewards" or "owed" to match.
 

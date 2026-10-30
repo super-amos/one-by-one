@@ -35,8 +35,6 @@ enum Theme {
     static let reward = Color(light: rgb(0xF08A24), dark: rgb(0xFFA94D))
     static let rewardText = Color(light: rgb(0xA3480A), dark: rgb(0xFFB866))
     static let rewardGlow = Color(light: rgb(0xFF8A3D, alpha: 0.45), dark: rgb(0xFFA94D, alpha: 0.55))
-    /// Dark text for the warm buttons, readable in both modes.
-    static let onReward = Color(light: rgb(0x2B1600), dark: rgb(0x2B1600))
     static let cardCornerRadius: CGFloat = 28
 
     static var rewardGradient: LinearGradient {
@@ -74,19 +72,28 @@ struct PillButtonStyle: ButtonStyle {
     }
 }
 
-/// The warm button for spending rewards.
+/// The warm button for logging what you spent: a flat tint, with no gradient
+/// or glow.
 struct RewardButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .font(.system(size: 15, weight: .semibold))
-            .foregroundStyle(Theme.onReward)
-            .padding(.horizontal, 24)
-            .frame(height: 42)
-            .background(Capsule().fill(Theme.rewardGradient))
-            .shadow(color: Theme.rewardGlow, radius: 10, y: 3)
-            .contentShape(Capsule())
-            .scaleEffect(configuration.isPressed ? 0.96 : 1)
-            .animation(.spring(response: 0.25, dampingFraction: 0.7), value: configuration.isPressed)
+        RewardButton(configuration: configuration)
+    }
+
+    private struct RewardButton: View {
+        let configuration: ButtonStyleConfiguration
+        @State private var isHovering = false
+
+        var body: some View {
+            configuration.label
+                .font(.system(size: 15, weight: .semibold))
+                .foregroundStyle(Theme.rewardText)
+                .padding(.horizontal, 24)
+                .frame(height: 42)
+                .background(Capsule().fill(Theme.reward.opacity(configuration.isPressed ? 0.28 : isHovering ? 0.22 : 0.15)))
+                .contentShape(Capsule())
+                .onHover { isHovering = $0 }
+                .animation(.easeOut(duration: 0.15), value: isHovering)
+        }
     }
 }
 

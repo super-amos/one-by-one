@@ -263,8 +263,8 @@ struct SpendSheet: View {
 
     var body: some View {
         SheetFrame(
-            title: existing == nil ? "Spend rewards" : "Edit spending",
-            action: existing == nil ? "Spend" : "Save",
+            title: existing == nil ? "Log what you spent" : "Edit spending",
+            action: existing == nil ? "Log it" : "Save",
             canSave: amount != nil,
             width: 440
         ) {

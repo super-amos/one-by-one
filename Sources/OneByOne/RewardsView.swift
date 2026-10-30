@@ -68,13 +68,9 @@ struct RewardsView: View {
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
                 .padding(.horizontal, 24)
-            Button { model.sheet = .spend(nil) } label: {
-                HStack(spacing: 8) {
-                    Image(systemName: "bag.fill")
-                    Text("Spend rewards")
-                }
-            }
-            .buttonStyle(RewardButtonStyle())
+            // The app has nothing to buy. This logs what you spent out in the world.
+            Button("I spent some rewards") { model.sheet = .spend(nil) }
+                .buttonStyle(RewardButtonStyle())
             .padding(.top, 10)
         }
         .padding(.vertical, 30)
