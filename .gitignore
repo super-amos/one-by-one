@@ -1,6 +1,7 @@
 .build/
 .swiftpm/
 build/
+.DS_Store
 
 # Working files from an earlier Round Table planning run. Local only;
 # SPEC.md is the source of truth.
